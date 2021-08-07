@@ -28,6 +28,7 @@
         }
         return self.current
     }
+    //TEXT-AAA
 
     self.reset = () => {
         _get_image(false)
