@@ -77,25 +77,31 @@
     }
 
     self.left_right = (display, val, mid, range, inverted) => {
-        let x = quando.convert_linear(val, mid, range, inverted)
+        document.addEventListener('mousemove',(e)=> {
+        let x = quando.convert_linear(val, e.clientX/20, range, inverted)
         let elem = document.getElementById('quando_image' + (display?'_display':''))
         elem.style.left = (x-50)+'%'
+        })
     }
 
     self.up_down = (display, val, mid, range, inverted) => {
-        let y = 100 - quando.convert_linear(val, mid, range, inverted)
+        document.addEventListener('mousemove',(e)=> {
+        let y = 100 - quando.convert_linear(val, e.clientY/20, range, inverted)
         let elem = document.getElementById('quando_image' + (display?'_display':''))
         elem.style.top = (y-50)+'%'
+        })
     }
 
     self.zoom = (display, val, min, max, inverted) => {
+        document.addEventListener('mousemove',(e)=> {
         if (val === false) {
             val = 0; // this forces the minimum value - not the middle
         }
         let mid = (min + max) /2
         let range = (max - min) / 2
-        let scale = quando.convert_linear(val, mid, range, inverted)
+        let scale = quando.convert_linear(val, e.clientX/20, range, inverted)
         let elem = document.getElementById('quando_image' + (display?'_display':''))
         elem.style.transform = `scale(${scale})`
+    })
     }
 })()
